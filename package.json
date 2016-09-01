@@ -1,6 +1,6 @@
 {
   "name": "react-numeric-field",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "React component that represents a numeric input field",
   "main": "index.js",
   "scripts": {
@@ -35,7 +35,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://bitbucket.org/standardstate/numeric-field.git"
+    "url": "git+https://github.com/spacemojo/react-numeric-field"
   },
-  "homepage": "https://bitbucket.org/standardstate/numeric-field#readme"
+  "homepage": "https://github.com/spacemojo/react-numeric-field#readme"
 }

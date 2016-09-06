@@ -7,36 +7,22 @@ var NumericField = React.createClass({
 
   getInitialState: function() {
     this.id = UUID.v4();
-    this.currentValue = (this.props.value == undefined) ? "" : this.processInitialValue(this.props.value);
+    this.currentValue = (this.props.value == undefined) ? "" : this.processValue(this.props.value);
     return null;
   },
 
-  processInitialValue: function(value) {
-    var str = "";
-    for(var c in value) {
-      if(!(isNaN(value[c]) || value[c] == ' ')) {
-        str += value[c];
-      }
-    }
-    return str;
+  processValue: function(value) {
+    return value.split("").filter((char) => !(isNaN(char) || char == ' ')).join("");
   },
 
   onChange: function(event) {
 
-    var inputValue = event.nativeEvent.target.value;
+    let inputValue = event.nativeEvent.target.value;
 
-    if(inputValue.length > 0) {
-      var char = inputValue[inputValue.length - 1];
-      if(isNaN(char) || char == ' ') {
-        document.getElementById(this.id).value = inputValue.substring(0, inputValue.length - 1);
-        return;
-      } else {
-        this.currentValue = inputValue;
-      }
-    } else {
-      this.currentValue = "";
-    }
+    let parsed = this.processValue(inputValue);
+    document.getElementById(this.id).value = parsed;
 
+    this.currentValue = parsed;
     this.props.setValue(this.currentValue);
 
   },

@@ -1,9 +1,9 @@
 'use strict'
 
-var React = require('react');
-var UUID = require('uuid');
+import React from 'react';
+import UUID from 'uuid';
 
-var NumericField = React.createClass({
+let NumericField = React.createClass({
 
   getInitialState: function() {
     this.id = UUID.v4();
@@ -17,12 +17,8 @@ var NumericField = React.createClass({
 
   onChange: function(event) {
 
-    let inputValue = event.nativeEvent.target.value;
-
-    let parsed = this.processValue(inputValue);
-    document.getElementById(this.id).value = parsed;
-
-    this.currentValue = parsed;
+    this.currentValue = this.processValue(event.nativeEvent.target.value);
+    document.getElementById(this.id).value = this.currentValue;
     this.props.setValue(this.currentValue);
 
   },
@@ -31,8 +27,7 @@ var NumericField = React.createClass({
     return (
       <div>
         <label htmlFor={this.id}>{this.props.name}</label>
-        <input style={{color: "#000000"}} type="text" className="u-full-width"
-         placeholder={this.props.name} id={this.id} defaultValue={this.currentValue} onChange={this.onChange} />
+        <input style={{color: "#000000"}} type="text" className="u-full-width" placeholder={this.props.name} id={this.id} defaultValue={this.currentValue} onChange={this.onChange} />
       </div>
     )
   }
